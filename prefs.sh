@@ -163,7 +163,7 @@ defaults write com.apple.UniversalAccess closeViewZoomFollowsFocus -bool false
 defaults write com.apple.UniversalAccess increaseContrast -bool true
 defaults write com.apple.UniversalAccess login -bool false
 
-defaults write com.apple.universalaccess mouseDriverCursorSize -float 2.0
+defaults write com.apple.universalaccess mouseDriverCursorSize -float 2.5
 defaults write com.apple.UniversalAccess reduceTransparency -bool true
 defaults write com.apple.UniversalAccess whiteOnBlack -int 1
 defaults write com.apple.UniversalAccess reduceTransparency -bool true
