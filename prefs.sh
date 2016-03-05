@@ -218,6 +218,16 @@ defaults write com.apple.speech.voice.prefs VoiceRateDataArray -array-add '(1835
 defaults write com.apple.Dock autohide -bool true
 
 
+
+/usr/bin/env osascript -l JavaScript << EOF
+	terminal = Application('Terminal');
+	terminal.defaultSettings.fontSize = 36;
+	terminal.defaultSettings.numberOfRows = 26;
+	terminal.defaultSettings.numberOfColumns = 80;
+EOF
+
+
+
 mkdir ~/Applications
 cd ~/Applications
 curl -OL https://api.textmate.org/downloads/release
