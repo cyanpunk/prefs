@@ -1,3 +1,30 @@
+
+# https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+# http://ss64.com/osx/syntax-defaults.html
+
+
+#####
+#com.apple.CoreGraphics
+#com.apple.Dictionary
+#com.apple.QuickLookDaemon
+#com.apple.Terminal
+#com.apple.TextEdit
+#com.apple.VoiceOver4.local
+#com.apple.VoiceOverTraining
+#com.apple.VoiceOverUtility
+#com.apple.VoiceOverUtilityCacheBuilder
+#com.apple.calculator
+#com.apple.dt.Xcode
+#com.apple.dt.Xcode.LSSharedFileList
+#com.apple.dt.Xcode.Playground
+#com.apple.finder
+#com.apple.loginitems
+#com.apple.symbolichotkeys
+#com.apple.systemuiserver
+#com.apple.universalaccess
+#com.apple.universalaccessAuthWarning
+#####
+
 set -v
 
 function CFPreferencesAppSynchronize() {
@@ -65,6 +92,10 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
+# invert colors keyboard shortcut
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 21 "{enabled = 1; value = { parameters = (120, 7, 1310720); type = 'standard'; }; }"
+
+
 
 
 # ==============================================
@@ -127,6 +158,77 @@ defaults write com.apple.UniversalAccess reduceTransparency -bool true
 defaults write com.apple.UniversalAccess whiteOnBlack -int 1
 defaults write com.apple.UniversalAccess reduceTransparency -bool true
 defaults write com.apple.CoreGraphics DisplayUseInvertedPolarity -int 1
+
+
+# Enable full keyboard access for all controls
+# (e.g. enable Tab in modal dialogs)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# Disable press-and-hold for keys in favor of key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Stop iTunes from responding to the keyboard media keys
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+
+# Disable shadow in screenshots
+defaults write com.apple.screencapture disable-shadow -bool true
+
+# Enable subpixel font rendering on non-Apple LCDs
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+
+# Disable Dashboard
+defaults write com.apple.dashboard mcx-disabled -bool true
+
+# Restore the the 'Save As' menu item (Equivalent to adding a Keyboard shortcut in the System Preferences.app )
+defaults write -g NSUserKeyEquivalents -dict-add 'Save As...' '@$S'
+
+# Save to disk (not to iCloud) by default 
+defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Expand 'Save As…' dialog boxes by default
+defaults write -g NSNavPanelExpandedStateForSaveMode -boolean true
+defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# Expand print panel dialog boxes by default
+defaults write -g PMPrintingExpandedStateForPrint -boolean true
+defaults write -g PMPrintingExpandedStateForPrint2 -bool true
+
+# Speech - read aloud, fast with Ctrl-S
+defaults write com.apple.speech.synthesis.general SpokenUIUseSpeakingHotKeyCombo -int 4097
+defaults write com.apple.speech.synthesis.general SpokenUIUseSpeakingHotKeyFlag -int 1
+#defaults write com.apple.speech.voice.prefs SelectedVoiceCreator -int 1835364215
+#defaults write com.apple.speech.voice.prefs SelectedVoiceID -int 201
+#defaults write com.apple.speech.voice.prefs SelectedVoiceName -int Alex
+defaults delete com.apple.speech.voice.prefs VoiceRateDataArray
+defaults write com.apple.speech.voice.prefs VoiceRateDataArray -array-add '(1835364215, 201, 320)'
+
+
+
+mkdir ~/Applications
+cd ~/Applications
+curl -OL https://api.textmate.org/downloads/release
+mv release TextMate.tbz
+tar -xjf TextMate.tbz
+rm TextMate.tbz
+
+read -d '' stuff <<- EOF
+fontSize         = 36
+theme            = DDC0CBE1-442B-4CB5-80E4-26E4CFB3A277
+EOF
+
+echo "$stuff" > ~/Library/Application\ Support/TextMate/Global.tmProperties
+
 
 #for app in "SystemUIServer" "cfprefsd" "Dock" "Finder"; do
 #	killall "${app}" &> /dev/null
