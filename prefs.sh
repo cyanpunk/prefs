@@ -214,6 +214,9 @@ defaults delete com.apple.speech.voice.prefs VoiceRateDataArray
 defaults write com.apple.speech.voice.prefs VoiceRateDataArray -array-add '(1835364215, 201, 320)'
 
 
+# Auto-hide the Dock
+defaults write com.apple.Dock autohide -bool true
+
 
 mkdir ~/Applications
 cd ~/Applications
@@ -229,12 +232,26 @@ EOF
 
 echo "$stuff" > ~/Library/Application\ Support/TextMate/Global.tmProperties
 
+mkdir ~/bin
+cp ~/Applications/TextMate.app/Contents/Resources/mate ~/bin/
+
+
+read -d '' stuff <<- EOF
+alias ls='ls -Gleah'
+export PATH=~/bin:$PATH
+test
+EOF
+
+echo "$stuff" >> ~/.bash_profile
+
 
 #for app in "SystemUIServer" "cfprefsd" "Dock" "Finder"; do
 #	killall "${app}" &> /dev/null
 #done
 
+set +v
 sleep 3
+
 #launchctl stop com.apple.syncdefaultsd && launchctl start com.apple.syncdefaultsd
 #killall cfprefsd
 
