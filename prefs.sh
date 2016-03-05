@@ -27,6 +27,16 @@
 
 set -v
 
+
+
+/usr/bin/env osascript -l JavaScript << EOF
+	terminal = Application('Terminal');
+	terminal.defaultSettings.fontSize = 36;
+	terminal.defaultSettings.numberOfRows = 26;
+	terminal.defaultSettings.numberOfColumns = 80;
+EOF
+
+
 function CFPreferencesAppSynchronize() {
     python - <<END
 from Foundation import CFPreferencesAppSynchronize
@@ -218,16 +228,6 @@ defaults write com.apple.speech.voice.prefs VoiceRateDataArray -array-add '(1835
 defaults write com.apple.Dock autohide -bool true
 
 
-
-/usr/bin/env osascript -l JavaScript << EOF
-	terminal = Application('Terminal');
-	terminal.defaultSettings.fontSize = 36;
-	terminal.defaultSettings.numberOfRows = 26;
-	terminal.defaultSettings.numberOfColumns = 80;
-EOF
-
-
-
 mkdir ~/Applications
 cd ~/Applications
 curl -OL https://api.textmate.org/downloads/release
@@ -252,15 +252,15 @@ export PATH="~/bin:$PATH"
 test
 EOF
 
-echo "$stuff" >> ~/.bash_profile
+echo "$stuff" > ~/.bash_profile
 
 
 #for app in "SystemUIServer" "cfprefsd" "Dock" "Finder"; do
 #	killall "${app}" &> /dev/null
 #done
 
-set +v
 sleep 3
+set +v
 
 #launchctl stop com.apple.syncdefaultsd && launchctl start com.apple.syncdefaultsd
 #killall cfprefsd
