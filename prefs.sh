@@ -264,6 +264,7 @@ cp ~/Applications/TextMate.app/Contents/Resources/mate ~/bin/
 read -d '' stuff <<- EOF
 alias ls='ls -Gleah'
 export PATH="~/bin:$PATH"
+export EDITOR=nano
 test
 EOF
 
