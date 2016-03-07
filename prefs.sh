@@ -3,6 +3,24 @@
 # http://ss64.com/osx/syntax-defaults.html
 
 
+# invert colors keyboard shortcut
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 21 "
+  <dict>
+    <key>enabled</key><true/>
+    <key>value</key><dict>
+      <key>type</key><string>standard</string>
+      <key>parameters</key>
+      <array>
+        <integer>120</integer>
+        <integer>7</integer>
+        <integer>1310720</integer>
+      </array>
+    </dict>
+  </dict>
+"
+
+
+
 #####
 #com.apple.CoreGraphics
 #com.apple.Dictionary
@@ -101,9 +119,6 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-
-# invert colors keyboard shortcut
-defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 21 "{enabled = 1; value = { parameters = (120, 7, 1310720); type = 'standard'; }; }"
 
 
 
