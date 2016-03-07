@@ -229,14 +229,14 @@ defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write -g PMPrintingExpandedStateForPrint -boolean true
 defaults write -g PMPrintingExpandedStateForPrint2 -bool true
 
-# Speech - read aloud, fast with Ctrl-S
-defaults write com.apple.speech.synthesis.general SpokenUIUseSpeakingHotKeyCombo -int 4097
-defaults write com.apple.speech.synthesis.general SpokenUIUseSpeakingHotKeyFlag -int 1
+## Speech - read aloud, fast with Ctrl-S
+#defaults write com.apple.speech.synthesis.general SpokenUIUseSpeakingHotKeyCombo -int 4097
+#defaults write com.apple.speech.synthesis.general SpokenUIUseSpeakingHotKeyFlag -int 1
 #defaults write com.apple.speech.voice.prefs SelectedVoiceCreator -int 1835364215
 #defaults write com.apple.speech.voice.prefs SelectedVoiceID -int 201
 #defaults write com.apple.speech.voice.prefs SelectedVoiceName -int Alex
-defaults delete com.apple.speech.voice.prefs VoiceRateDataArray
-defaults write com.apple.speech.voice.prefs VoiceRateDataArray -array-add '(1835364215, 201, 320)'
+#defaults delete com.apple.speech.voice.prefs VoiceRateDataArray
+#defaults write com.apple.speech.voice.prefs VoiceRateDataArray -array-add '(1835364215, 201, 320)'
 
 
 # Auto-hide the Dock
